@@ -1,0 +1,44 @@
+@import "../../../../styles/base/size";
+@import "../../../../styles/base/fonts";
+@import "../../../../styles/base/colors";
+
+.wrapper {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: url(../../../../assets/image/nepal-2184940.jpg) center/cover
+      no-repeat,
+    $background-gradient-box;
+}
+.card {
+  width: pxToRem(200);
+  height: pxToRem(220);
+  margin: auto;
+  padding: pxToRem(10);
+  color: $color-white;
+  background-color: $color-pink1;
+  background-image: $background-gradient-box;
+  font-family: "Lato", sans-serif;
+  border-radius: pxToRem(10);
+  cursor: pointer;
+
+  &__title {
+    margin: 0;
+    padding: pxToRem(25) 0;
+  }
+  &__temperature {
+    margin-top: 0;
+    font-size: pxToRem(16);
+  }
+  &__description {
+    padding: 0 pxToRem(10);
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column; 
+  }
+}

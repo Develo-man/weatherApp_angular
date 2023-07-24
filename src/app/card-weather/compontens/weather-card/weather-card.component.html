@@ -1,0 +1,8 @@
+<div class="wrapper" *ngIf="weatherData$ | async as weatherData">
+    <div class='card' *ngFor="let weather of weatherData" (click)="openCityWeatherPageUrl(weather.id)">
+        <h1 class="card__title">{{ weather.name }}</h1>
+        <p class="card__temperature">{{ weather.main.temp | number: '1.0-0' }} °C</p>
+        <p class="card__description">{{ capitalizeFirstLetter(weather.weather[0].description) }}</p>
+        <img [src]="getWeatherIconUrl(weather.weather[0].icon)" alt="Weather Icon" />
+    </div>
+</div>
