@@ -9,7 +9,6 @@ import { WeatherData } from '../models/application.model';
   providedIn: 'root',
 })
 export class WeatherService {
-  [x: string]: any;
   selectedCities: string[] = [];
   private API_KEY = '6a3bf40735a0ef5beab29299d313af39';
   private API_LANG = 'en';
