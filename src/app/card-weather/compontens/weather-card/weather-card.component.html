@@ -1,8 +1,28 @@
 <div class="wrapper" *ngIf="weatherData$ | async as weatherData">
-    <div class='card' *ngFor="let weather of weatherData" (click)="openCityWeatherPageUrl(weather.id)">
-        <h1 class="card__title">{{ weather.name }}</h1>
-        <p class="card__temperature">{{ weather.main.temp | number: '1.0-0' }} °C</p>
-        <p class="card__description">{{ capitalizeFirstLetter(weather.weather[0].description) }}</p>
-        <img [src]="getWeatherIconUrl(weather.weather[0].icon)" alt="Weather Icon" />
+
+    <div class='card' *ngFor="let weather of weatherData; let i = index" (click)="openCityWeatherPageUrl(weather.id)"
+        [attr.aria-label]="'Weather for ' + weather.name">
+
+        <div class="card__location-indicator"></div>
+
+        <div class="card__header">
+            <h1 class="card__title">{{ weather.name }}</h1>
+        </div>
+
+        <div class="card__main-content">
+            <div class="card__temperature">
+                {{ weather.main.temp | number: '1.0-0' }}°
+            </div>
+
+            <img class="card__icon" [class.card__icon--loading]="!weather.weather[0].icon"
+                [src]="getWeatherIconUrl(weather.weather[0].icon)" [alt]="weather.weather[0].description"
+                loading="lazy" />
+        </div>
+
+        <div class="card__footer">
+            <p class="card__description">
+                {{ capitalizeFirstLetter(weather.weather[0].description) }}
+            </p>
+        </div>
     </div>
 </div>

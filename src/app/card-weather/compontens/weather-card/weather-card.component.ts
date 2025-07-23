@@ -33,7 +33,17 @@ export class WeatherCardComponent implements OnInit {
     return `https://openweathermap.org/img/w/${iconId}.png`;
   }
 
-  openCityWeatherPageUrl(id: number): void {
-    window.open(`https://openweathermap.org/city/${id}`);
+ openCityWeatherPageUrl(id: number): void {
+  if (!id || id <= 0 || !Number.isInteger(id)) {
+    console.error('Nieprawidłowe ID miasta');
+    return;
   }
+  
+  const url = `https://openweathermap.org/city/${encodeURIComponent(id.toString())}`;
+  const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+  
+  if (newWindow) {
+    newWindow.opener = null; 
+  }
+}
 }
